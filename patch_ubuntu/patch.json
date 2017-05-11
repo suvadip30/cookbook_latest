@@ -1,0 +1,6 @@
+{
+  "patch_ubuntu" : {
+    "security_upgrades" : "custom",
+  }
+}
+

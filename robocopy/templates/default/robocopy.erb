@@ -1,0 +1,15 @@
+$csvs = Import-Csv "<%= @output_file%>\<%= @csv_path%>"
+Out-File -InputObject "Remove-Job -state Completed" -FilePath "<%= @output_file%>\<%= @output_file_final%>"
+$robocopy = 'Start-Job -ScriptBlock{
+			Robocopy.exe <%= @string_source%> <%= @string_destination%> <%= @copy_sub_dir%> <%= @file_declaration%> <%= @no_of_retries%> <%= @wait_time%> <%= @verbose%> <%= @include_files%> <%= @purge%> <%= @copy_file%> <%= @log%>:<%= @tmp%>\<%= @output_log%>
+			} -ArgumentList $_'
+
+function get-csv {
+   foreach($csv in $csvs)
+   {
+      $robocopy | ForEach-Object{$_-replace "<%= @string_source%>",$csv.source `
+                                  -replace "<%= @string_destination%>",$csv.destination}
+   }
+   return
+   }
+   $outputs = return get-csv | Out-File -FilePath "<%= @output_file%>\<%= @output_file_final%>" -Append

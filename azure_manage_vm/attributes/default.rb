@@ -1,0 +1,13 @@
+default['azure_manage_vm']['azure_account_name'] = '"suvadip@snp.com"'
+default['azure_manage_vm']['azure_password']     = "'SUVAman$9614'"
+default['azure_manage_vm']['tenant_id']		 = '"2c92be96-170c-4932-ad8a-eb44b0835703"'
+default['azure_manage_vm']['resource_group_name']= '"suvresources"'
+default['azure_manage_vm']['name']		 = '"windowstest"'
+default['azure_manage_vm']['error_action']       = 'SilentlyContinue'
+default['azure_manage_vm']['warning_action']     = 'SilentlyContinue'
+default['azure_manage_vm']['status_code_start']        = '"powerstate/running"'
+default['azure_manage_vm']['status_start']             = '"started"'
+default['azure_manage_vm']['manage_vm_start']          = 'start-azurermvm'
+default['azure_manage_vm']['status_code_stop']	       = '"powerstate/deallocated"'
+default['azure_manage_vm']['status_stop']              = '"stopped"'
+default['azure_manage_vm']['manage_vm_stop']           = 'stop-azurermvm'

@@ -1,0 +1,8 @@
+{
+  "ubuntu_test" : {
+    "tmp" : "/custom",
+    "ubuntu_test" : {
+       "subdir" : "/customsub"
+    }
+  }
+}
