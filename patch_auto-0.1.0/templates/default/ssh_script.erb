@@ -1,0 +1,18 @@
+desserver1='/tmp/patch_security1.txt'
+desserver2='/tmp/patch_security2.txt'
+desserver3='/tmp/patch_security3.txt'
+des1='/tmp/patch_security.txt'
+des2='/tmp/patch_security_des.txt'
+des3='/tmp/patch_security_des.sh'
+des4='/opt/patch/test-patch/patch_security_des_final.sh'
+CMD_OUT1=$(sshpass -p '<%= @server_password%>' ssh SNPAdmin@<%= @server1%> "apt list --upgradable | grep security | sed 's/.trusty-updates,trusty-security//'" > $desserver1)
+CMD_OUT2=$(sshpass -p '<%= @server_password%>' ssh SNPAdmin@<%= @server2%> "apt list --upgradable | grep security | sed 's/.trusty-updates,trusty-security//'" > $desserver2)
+CMD_OUT3=$(sshpass -p '<%= @server_password%>' ssh SNPAdmin@<%= @server3%> "apt list --upgradable | grep security | sed 's/.trusty-updates,trusty-security//'" > $desserver3)
+
+cat $desserver1 $desserver2 $desserver3 > $des1
+awk {'print $1'} $des1 > $des2
+sed 's/^/apt-get -f install /g' $des2 > $des3
+awk '{print $0, "-y"}' $des3 > $des4
+echo "$CMD_OUT1"
+echo "$CMD_OUT2"
+echo "$CMD_OUT3"

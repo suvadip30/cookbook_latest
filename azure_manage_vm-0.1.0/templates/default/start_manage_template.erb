@@ -1,0 +1,25 @@
+$azureAccountName = <%= @azure_account_name %>
+$azurePassword = ConvertTo-SecureString <%= @azure_password %> -AsPlainText -Force
+
+
+$Cred = New-Object System.Management.Automation.PSCredential($azureAccountName, $azurePassword)
+Login-AzureRmAccount -Credential $Cred -TenantId <%= @tenant_id %>
+
+$query =   get-azurermvm -ResourceGroupName <%= @resource_group_name %> -Name <%= @name %> `
+         -Status -ErrorAction <%= @error_action  %> `
+         -WarningAction <%= @warning_action %>    
+$status = (get-azurermvm -ResourceGroupName <%= @resource_group_name %> -Name <%= @name %> `
+         -Status -ErrorAction <%= @error_action  %> `
+         -WarningAction <%= @warning_action %>).Statuses[1].Code 
+          
+if($status -eq <%= @status_code_start %>)
+    {
+         $query | <%= @manage_vm_stop %> -Force
+         Write-Output <%= @status_stop %>
+    }
+elseif ($status -eq <%= @status_code_stop %>)
+    {
+         $query | <%= @manage_vm_start %>
+         Write-Output <%= @status_start %>
+    }      
+

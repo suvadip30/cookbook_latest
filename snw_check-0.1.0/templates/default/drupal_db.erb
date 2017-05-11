@@ -1,0 +1,13 @@
+#!/bin/bash
+RESULT_VARIABLE=`echo "$(mysql drupal -u<%= @drupal_user %> -p<%= @drupal_password %> -se "SELECT EXISTS(SELECT 1 FROM users )")"`
+        DETAIL_USER_VARIABLE=`echo "SELECT name, mail, uid FROM users" | mysql drupal -u drupaluser -pPassword@123`
+        echo "********Check Drupal Users*********" >> /tmp/test/test.txt
+        if [ "$RESULT_VARIABLE" -eq 1 ]; then
+                echo "All the users exits in the Database of Drupal." >> /tmp/test/test.txt
+                echo "Please check the below users for more details." >> /tmp/test/test.txt
+                echo "$DETAIL_USER_VARIABLE" >> /tmp/test/test.txt
+                echo "---------------------------------------------" >> /tmp/test/test.txt
+        else
+                echo "Sorry there is no User in the Database, please create user"
+                echo "---------------------------------------------" >> /tmp/test/test.txt
+        fi

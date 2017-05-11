@@ -1,0 +1,8 @@
+default['drupal_db']['temporary_directory'] = '/tmp'
+default['drupal_db']['interpreter'] = 'bash'
+default['drupal_db']['DAY'] = 'DAY'
+default['drupal_db']['MONTH'] = 'MONTH'
+default['drupal_db']['MONTH_dig'] = 'MONTH_dig'
+default['drupal_db']['YEAR'] = 'YEAR'
+default['drupla_db']['DATE_V'] = 'DATE'
+default['drupla_db']['date'] = 'date'

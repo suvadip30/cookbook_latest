@@ -1,0 +1,11 @@
+DEPENDENCIES
+  patchman
+    path: .
+    metadata: true
+
+GRAPH
+  apt (2.4.0)
+  patchman (1.0.0)
+    apt (>= 0.0.0)
+    yum (>= 0.0.0)
+  yum (3.2.2)
